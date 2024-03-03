@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secondary Carbon Footprint Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            background-image: url('background.jpeg'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        input, select, button, .navigation-button {
+            padding: 12px;
+            margin: 8px 0;
+            width: calc(100% - 24px);
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        button, .navigation-button {
+            padding: 5px 10px; /* Smaller padding */
+            font-size: 0.85rem; /* Smaller text */
+            width: auto;
+            background-color: #0e9542;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover, .navigation-button:hover {
+            background-color: rgb(80, 136, 17);
+        }
+        .navigation-buttons-container {
+            padding: 5px 10px; /* Smaller padding */
+            font-size: 0.85rem; /* Smaller text */
+            width: auto;
+            display: flex;
+            justify-content: space-between;
+            margin: 0 10px;
+        }
+        .navigation-button {
+            flex-grow: 1;
+            margin: 0 5px; /* Adjust spacing between buttons */
+        }
+        h3 {
+            margin-top: 0;
+        }
+        .logo {
+    display: block;
+    max-width: 100px; /* Adjust based on your logo's size */
+    height: auto; /* This maintains the aspect ratio of the image */
+    margin: 0 auto 20px; /* Centers the logo and adds some space below it */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.jpeg" alt="Logo" class="logo">
+        <h3>Secondary Carbon Footprint Calculator</h3>
+        <div>
+            Choose your currency:
+            <select id="currency">
+                <option value="INR">₹ INR</option>
+                <!-- Add more currency options here if needed -->
+            </select>
+        </div>
+        <div>Food and drink products: 
+            <select id="diet">
+                <option value="heavyMeat">Heavy meat eater</option>
+                <option value="lightMeat">Light meat eater</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="vegan">Vegan</option>
+            </select>
+            <input type="number" id="food" placeholder="₹ per month">
+        </div>
+        <div>Pharmaceuticals: <input type="number" id="pharma" placeholder="₹ per month"></div>
+        <div>Clothes, textiles and shoes: <input type="number" id="clothes" placeholder="₹ per month"></div>
+        <!-- Add more categories here -->
+        <button onclick="calculateFootprint()">Calculate</button>
+        <p>Total Secondary Footprint = <span id="totalFootprint">0.00</span> metric tons of CO2e</p>
+        <div class="navigation-buttons-container">
+            <button class="navigation-button" onclick="window.location.href='indexdemo.html'">Back</button>
+            <button class="navigation-button" onclick="window.location.href='result.html'">Final result</button>
+        </div>
+    </div>
+    <script>
+        function calculateFootprint() {
+            const diet = document.getElementById("diet").value;
+            const foodSpend = parseFloat(document.getElementById("food").value) || 0;
+            const pharma = parseFloat(document.getElementById("pharma").value) || 0;
+            const clothes = parseFloat(document.getElementById("clothes").value) || 0;
+            // Add more categories here
+            
+            const currency = document.getElementById("currency").value;
+            const conversionRate = 0.014; // Conversion rate for INR to metric tons of CO2e
+            
+            // Different emission factors based on dietary preferences
+            const dietEmissionFactors = {
+                heavyMeat: 1.5,
+                lightMeat: 1.2,
+                vegetarian: 0.8,
+                vegan: 0.6
+            };
+            
+            const dietFactor = dietEmissionFactors[diet] || 1; // Default to 1 if not found
+            
+            // Convert spendings to metric tons of CO2e using the diet factor for food
+            const totalFootprint = ((foodSpend * dietFactor) + pharma + clothes) * conversionRate;
+
+            document.getElementById("totalFootprint").innerText = totalFootprint.toFixed(2) + " metric tons of CO2e";
+        }
+    </script>
+</body>
+</html>

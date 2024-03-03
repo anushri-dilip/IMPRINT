@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compact Car Carbon Footprint Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #eef5f9;
+            background-image: url('background.jpeg'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-size: 14px;
+        }
+        .container {
+            width: 100%; /* Adjusted for mobile */
+            max-width: 500px; /* Limit max width for larger screens */
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            padding: 12px; /* Increased for better touch interaction */
+            margin: 8px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #0e9542;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #518a11;
+        }
+        h2, h3 {
+            margin: 15px 0;
+        }
+        p {
+            margin: 8px 0;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px; /* Reduce padding */
+            }
+            .container {
+                padding: 10px; /* Reduce container padding */
+            }
+            h2, h3 {
+                font-size: 16px; /* Adjust heading sizes for better readability */
+            }
+            p, input, button {
+                font-size: 14px; /* Ensure text is easily readable */
+            }
+        }
+    .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .nav-button {
+            padding: 5px 10px; /* Smaller padding */
+            font-size: 0.85rem; /* Smaller text */
+            width: auto;
+            border-radius: 4px;
+            border: none;
+            background-color: #0e9542;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .nav-button:hover {
+            background-color: #518a11;
+        }
+        .logo {
+    display: block;
+    max-width: 100px; /* Adjust based on your logo's size */
+    height: auto; /* This maintains the aspect ratio of the image */
+    margin: 0 auto 20px; /* Centers the logo and adds some space below it */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.jpeg" alt="Logo" class="logo">
+        <h2>Car Footprint Calculator</h2>
+        <p>Details for up to 2 cars:</p>
+        
+        <div class="car-details">
+            <h3>Car 1</h3>
+            <p>Mileage: <input type="number" id="mileage1" placeholder="km"></p>
+            <p>Efficiency: <input type="number" id="efficiency1" placeholder="L/100km"></p>
+        </div>
+        
+        <div class="car-details">
+            <h3>Car 2</h3>
+            <p>Mileage: <input type="number" id="mileage2" placeholder="km"></p>
+            <p>Efficiency: <input type="number" id="efficiency2" placeholder="L/100km"></p>
+        </div>
+
+        <button onclick="calculateTotalFootprint()">Calculate</button>
+        <p>Total Footprint = <span id="totalFootprint">0.00</span> metric tons of CO2e</p>
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="location.href='indexdemo.html'">Back</button>
+            <button class="nav-button" onclick="location.href='motorcycle.html'">Next</button>
+        </div>
+    </div>
+    <script>
+        function calculateTotalFootprint() {
+            // Assuming CO2e emission factor for petrol is 2.31 kgCO2e per liter
+            const emissionFactor = 2.31;
+            const mileage1 = document.getElementById("mileage1").value;
+            const efficiency1 = document.getElementById("efficiency1").value;
+            const mileage2 = document.getElementById("mileage2").value;
+            const efficiency2 = document.getElementById("efficiency2").value;
+            
+            // Calculate emissions for each car: (Mileage / 100) * Efficiency * EmissionFactor
+            const emissions1 = (mileage1 / 100) * efficiency1 * emissionFactor;
+            const emissions2 = (mileage2 / 100) * efficiency2 * emissionFactor;
+            
+            // Sum of both cars' emissions
+            const totalEmissions = emissions1 + emissions2;
+            
+            // Update the Total Footprint display
+            document.getElementById("totalFootprint").innerText = totalEmissions.toFixed(2);
+        }
+    </script>
+</body>
+</html>
