@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename=image_url) }}"); /* Replace 'path_to_your_image.jpg' with the actual path to your image */
+            background-size: cover;
+            background-position: center;
+            color: white; /* Set text color to white */
+            font-weight: bold; /* Set font weight to bold */
+            font-size: 24px; /* Set font size to 24 pixels */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            color: white; /* Set text color to white */
+            font-weight: bold; /* Set font weight to bold */
+            font-size: 24px; /* Set font size to 24 pixels */
+        }
+
+        input[type="number"],
+        input[type="text"] {
+            color: black; /* Set text color to black for input elements */
+            font-weight: bold; /* Set font weight to bold for input elements */
+            font-size: 18px; /* Set font size to 18 pixels for input elements */
+        }
+
+        input[type="submit"] {
+            color: black; /* Set text color to black for submit button */
+            font-weight: bold; /* Set font weight to bold for submit button */
+            font-size: 24px; /* Set font size to 24 pixels for submit button */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Carbon Footprint Tracker</h1>
+        <form action="/calculate" method="post">
+            <label for="electricity">Electricity (kWh):</label>
+            <input type="number" id="electricity" name="electricity" required><br>
+            <label for="water">Water (gallons):</label>
+            <input type="number" id="water" name="water" required><br>
+            <label for="food">Food Consumption (list items, separated by commas):</label>
+            <input type="text" id="food" name="food" required><br>
+            <label for="car_usage">Car Usage (miles):</label>
+            <input type="number" id="car_usage" name="car_usage" required><br>
+            <label for="bike_usage">Bike Usage (miles):</label>
+            <input type="number" id="bike_usage" name="bike_usage" required><br>
+            <input type="submit" value="Calculate">
+        </form>
+    </div>
+</body>
+</html>

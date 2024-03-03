@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Result</title>
+    <style>
+        body {
+            background-color: rgb(12, 131, 36); /* Set light green background color */
+            color: white; /* Set white font color */
+            font-size: 24px; /* Set font size to 24 pixels */
+            font-weight: bold; /* Set font weight to bold */
+        }
+
+        h1 {
+            text-decoration: underline; /* Underline the text in h1 */
+        }
+
+        h2 {
+            text-decoration: underline; /* Underline the text in h2 */
+        }
+
+        h1, p, ul, li {
+            color: white; /* Set white font color for headings, paragraphs, and list items */
+            font-weight: bold; /* Set font weight to bold for headings, paragraphs, and list items */
+        }
+
+        span {
+            color: white; /* Set white font color for spans */
+            font-weight: bold; /* Set font weight to bold for spans */
+        }
+
+        .suggestions {
+            margin-top: 20px; /* Add space above the suggestions */
+        }
+    </style>
+</head>
+<body>
+    <h1>Carbon Footprint Result</h1>
+    <p>Your total carbon footprint is: <span>{{ total_carbon_footprint }}</span> metric tonnes of CO2</p>
+    <p><span>{{ message }}</span></p>
+    {% if suggestions %}
+    <h2>Suggestions</h2>
+    <p class="suggestions">Consider the following ways to decrease carbon emissions:</p> <!-- Wrapped in a paragraph -->
+    <ul>
+        {% for suggestion in suggestions %}
+        <li><span>{{ suggestion }}</span></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
