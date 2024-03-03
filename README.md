@@ -1,5 +1,5 @@
 # IMPRINT 
-CARBON FOOTPRINT DETECTION AND REDUCTION WEBSITE - 
+CARBON FOOTPRINT DETECTION AND REDUCTION WEBSITE
 
 give a short description on a website that tracks carbon footprints and reduces it. 
 user inputs details such as list of food items, bike and car fuel consumption , electricity and water bill usage and computes the total carbon emissions that's produced. it then compares it against a recommended usage level of 5 metric tonnes. 
