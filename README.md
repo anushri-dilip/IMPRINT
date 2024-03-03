@@ -1,5 +1,6 @@
-# IMPRINT 
-CARBON FOOTPRINT DETECTION AND REDUCTION WEBSITE
+# CARBON FOOTPRINT DETECTION AND REDUCTION WEBSITE
+
+IMPRINT
 
 imprint is a website that tracks carbon footprints and reduces it. 
 
