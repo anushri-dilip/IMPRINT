@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compact Motorbike Carbon Footprint Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            background-image: url('background.jpeg'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center;
+            text-align: center;
+            font-size: 16px; /* Better readability on small screens */
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            margin: 10px; /* Adjusted for mobile view */
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 400px; /* Maximum width to maintain layout on larger screens */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        input, button {
+            padding: 10px; /* Larger touch targets */
+            margin: 10px 0; /* More space between elements */
+            width: calc(100% - 22px); /* Full-width elements */
+            box-sizing: border-box; /* Border and padding included in width */
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button {
+            background-color: #0e9542;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #518a11;
+        }
+        /* Style for navigation buttons */
+        .navigation-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .navigation-button {
+            padding: 5px 10px; /* Smaller padding */
+            font-size: 0.85rem; /* Smaller text */
+            width: auto;
+            border: none;
+            background-color: #0e9542;
+            color: white;
+            cursor: pointer;
+        }
+        .navigation-button:hover {
+            background-color: #518a11;
+        }
+        .logo {
+    display: block;
+    max-width: 100px; /* Adjust based on your logo's size */
+    height: auto; /* This maintains the aspect ratio of the image */
+    margin: 0 auto 20px; /* Centers the logo and adds some space below it */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.jpeg" alt="Logo" class="logo">
+        <h3>Motorbike Carbon Footprint Calculator</h3>
+        <div>Mileage 1: <input type="number" id="mileage1" placeholder="km"> </div>
+        <div>Efficiency 1: <input type="number" id="efficiency1" placeholder="L/100km"> </div>
+        <div>Mileage 2: <input type="number" id="mileage2" placeholder="km"></div>
+        <div>Efficiency 2: <input type="number" id="efficiency2" placeholder="L/100km"> </div>
+        <button onclick="calculateFootprint()">Calculate</button>
+        <p>Total Motorbike Footprint = <span id="totalFootprint">0.00</span> metric tons of CO2e</p>
+
+        <!-- Navigation Buttons -->
+        <div class="navigation-buttons">
+            <button class="navigation-button" onclick="goBack()">Back</button>
+            <button class="navigation-button" onclick="goNext()">Next</button>
+        </div>
+    </div>
+    <script>
+        function calculateFootprint() {
+            const mileage1 = document.getElementById("mileage1").value || 0;
+            const efficiency1 = document.getElementById("efficiency1").value || 0;
+            const mileage2 = document.getElementById("mileage2").value || 0;
+            const efficiency2 = document.getElementById("efficiency2").value || 0;
+            const co2PerLiter = 2.31; // Average CO2 emitted per liter of gasoline
+            
+            const footprint1 = (mileage1 / 100) * efficiency1 * co2PerLiter;
+            const footprint2 = (mileage2 / 100) * efficiency2 * co2PerLiter;
+            const totalFootprint = (footprint1 + footprint2).toFixed(2);
+
+            document.getElementById("totalFootprint").innerText = totalFootprint + " metric tons of CO2e";
+        }
+
+        // Function to navigate to the previous page
+        function goBack() {
+            window.location.href = 'indexdemo.html';
+        }
+
+        function goNext() {
+            window.location.href = 'others.html';
+        }
+    </script>
+</body>
+</html>
